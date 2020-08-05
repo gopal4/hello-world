@@ -5,12 +5,12 @@ pipeline{
    PATH = /opt/mvn3/bin:$PATH
    }
    stages{
-     stage('checkout') {
+     stage('checkout firt stage') {
       steps{
-      git cridentialId: 'github' url: 'https://github.com/gopal4/hello-world.git'
+      git url: 'https://github.com/gopal4/hello-world.git'
       }
      }
-     stage('build') {
+     stage('build second stage') {
       steps{
       sh 'mvn clean install'
       }

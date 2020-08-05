@@ -1,0 +1,33 @@
+pipeline{
+   agent any
+
+   environment{
+   PATH = /opt/mvn3/bin:$PATH
+   }
+   stages{
+     stage('checkout') {
+      steps{
+      git cridentialId: 'github' url: 'github.com/gopa/repo.git' 
+      }
+     }
+     stage('build') {
+      steps{
+      sh 'mvn clean install'
+      }
+     }
+     stage('sonarqube analysis') {
+      steps{
+      //body
+      sh 'mvn sonar:sonar'
+      }
+     }
+     stage('stack email notification') {
+      steps{
+      mail bcc: '', body: 'sonar result for refarence', 
+      cc: '', from: '', replyTo: '', 
+      subject: 'sonar result', to: 'test@gmail.com'
+      
+      }
+     }
+   }
+}

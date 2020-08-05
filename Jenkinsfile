@@ -2,7 +2,7 @@ pipeline{
    agent any
 
    environment{
-   PATH = /opt/mvn5/bin:$PATH
+   PATH = "/opt/mvn5/bin:$PATH"
    }
    stages{
      stage('checkout firt stage') {
